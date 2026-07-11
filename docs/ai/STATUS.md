@@ -29,7 +29,7 @@ Allowed states: `PENDING`, `NEXT`, `IN PROGRESS`, `BLOCKED`, `COMPLETE`.
 - A Next.js `15.5.20` App Router application now uses strict TypeScript, Tailwind CSS 4, `src/`, the `@/*` alias, pnpm, and the approved dependency set.
 - The root provider boundary supplies the shared TanStack Query policy and Light/Dark/System theme behavior; Phase 2 entity hooks now consume that policy through centralized full-dataset query options.
 - Semantic theme tokens, Geist fonts, core UI primitives, normalized error shape, validated public environment default, Vitest, Testing Library, and official Next.js ESLint rules are configured.
-- Git history is pushed to `git@github.com:ismanovN1/test-adminka.git` on `main` through commit `d8302b0` plus this deployment handoff update.
+- Git history is pushed to `git@github.com:ismanovN1/test-adminka.git` on `main` through the release and deployment handoff commits.
 - Live planning checks observed that DummyJSON resources support complete loads through `limit=0` and currently contain only hundreds of rows; runtime code must never hardcode observed counts.
 - The legacy REST Countries v3.1 call returned a deprecation response during planning. Core functionality therefore uses DummyJSON country strings with optional server-only v5 enrichment.
 
@@ -58,7 +58,7 @@ Post-release publish:
 - `pnpm lint && pnpm typecheck && pnpm test:run` — PASS: zero lint/type errors and 25 test files / 104 tests passed after the locale badge update.
 - `pnpm lint && pnpm typecheck && pnpm test:run && pnpm build` — PASS: zero lint/type errors, 25 test files / 104 tests passed, and production build passed.
 - `git push -u origin main` — PASS: `main` created on `git@github.com:ismanovN1/test-adminka.git`.
-- `pnpm dlx vercel deploy --prod --yes --project test-adminka` — PASS after project settings repair: deployment `dpl_Cqkh5wZYTns6QJWpsb2ZtDvrHsHn` reached `READY` and was aliased to `https://test-adminka.vercel.app`.
+- `pnpm dlx vercel deploy --prod --yes --project test-adminka` — PASS after project settings repair: production deployment reached `READY` and was aliased to `https://test-adminka.vercel.app`.
 - `curl -I https://test-adminka.vercel.app` — PASS: HTTP 200 from Vercel.
 - Browser visual check — PASS before final text-fitting adjustment: Products header/price control and Dashboard KPI layout showed one `h1`, no horizontal overflow, equal-height product filter controls, and no KPI icon/value overlap at 1280 and 1646 px.
 - Local dev server restarted after the production build invalidated its concurrent Turbopack process; `curl http://localhost:3001/` — PASS (HTTP 200).
