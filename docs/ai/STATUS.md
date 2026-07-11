@@ -1,6 +1,6 @@
 # Project status and session handoff
 
-Last updated: 2026-07-11 18:52 +05
+Last updated: 2026-07-11 18:51 +05
 Lifecycle: **RELEASE CANDIDATE**
 Current owner: root managing agent
 Active phase: none
@@ -29,7 +29,7 @@ Allowed states: `PENDING`, `NEXT`, `IN PROGRESS`, `BLOCKED`, `COMPLETE`.
 - A Next.js `15.5.20` App Router application now uses strict TypeScript, Tailwind CSS 4, `src/`, the `@/*` alias, pnpm, and the approved dependency set.
 - The root provider boundary supplies the shared TanStack Query policy and Light/Dark/System theme behavior; Phase 2 entity hooks now consume that policy through centralized full-dataset query options.
 - Semantic theme tokens, Geist fonts, core UI primitives, normalized error shape, validated public environment default, Vitest, Testing Library, and official Next.js ESLint rules are configured.
-- Git history is initialized through Phase 4. Phase 5–10 changes are intentionally left uncommitted for user review because this session did not include an explicit commit request.
+- Git history is pushed to `git@github.com:ismanovN1/test-adminka.git` on `main` through commit `d8302b0` plus this deployment handoff update.
 - Live planning checks observed that DummyJSON resources support complete loads through `limit=0` and currently contain only hundreds of rows; runtime code must never hardcode observed counts.
 - The legacy REST Countries v3.1 call returned a deprecation response during planning. Core functionality therefore uses DummyJSON country strings with optional server-only v5 enrichment.
 
@@ -42,19 +42,24 @@ Allowed states: `PENDING`, `NEXT`, `IN PROGRESS`, `BLOCKED`, `COMPLETE`.
 
 ## Most recent completed work
 
-Post-release UI repair:
+Post-release publish:
 
 - renamed the product from Nexa Admin to Test Admin across visible branding, locale messages, route metadata, README, product specification, and package metadata;
 - added a compact `RU` / `EN` badge to the header language-switch icon so the active locale is always visible;
 - moved each route's title and description into the persistent top header and removed the duplicate in-content page header, including the obsolete “Nexa Admin” header label;
 - aligned Users, Products, and Orders pagination controls to one compact layout with a stable page indicator and consistent page-size control;
 - fixed the Products price-range control so its closed state matches the height and baseline of adjacent filters;
-- fixed Dashboard KPI icon positioning and kept the revenue KPI value fully visible at the six-card desktop layout.
+- fixed Dashboard KPI icon positioning and kept the revenue KPI value fully visible at the six-card desktop layout;
+- committed all release changes and pushed `main` to `git@github.com:ismanovN1/test-adminka.git`;
+- created the Vercel `test-adminka` project, corrected its framework settings to Next.js with automatic build/install/output detection, and deployed production at `https://test-adminka.vercel.app`.
 
 ## Verification from most recent session
 
 - `pnpm lint && pnpm typecheck && pnpm test:run` — PASS: zero lint/type errors and 25 test files / 104 tests passed after the locale badge update.
 - `pnpm lint && pnpm typecheck && pnpm test:run && pnpm build` — PASS: zero lint/type errors, 25 test files / 104 tests passed, and production build passed.
+- `git push -u origin main` — PASS: `main` created on `git@github.com:ismanovN1/test-adminka.git`.
+- `pnpm dlx vercel deploy --prod --yes --project test-adminka` — PASS after project settings repair: deployment `dpl_Cqkh5wZYTns6QJWpsb2ZtDvrHsHn` reached `READY` and was aliased to `https://test-adminka.vercel.app`.
+- `curl -I https://test-adminka.vercel.app` — PASS: HTTP 200 from Vercel.
 - Browser visual check — PASS before final text-fitting adjustment: Products header/price control and Dashboard KPI layout showed one `h1`, no horizontal overflow, equal-height product filter controls, and no KPI icon/value overlap at 1280 and 1646 px.
 - Local dev server restarted after the production build invalidated its concurrent Turbopack process; `curl http://localhost:3001/` — PASS (HTTP 200).
 - Final browser re-open was blocked by the local browser extension (`ERR_BLOCKED_BY_CLIENT`); the final dashboard adjustment only removes KPI text truncation while retaining the browser-checked icon layout.
@@ -81,7 +86,6 @@ Post-release UI repair:
 - P2/tooling: Chrome automation did not expose a blob download event for Users CSV; BOM, escaping, injection defense, filename, and filtered/sorted pre-pagination scope are covered by unit tests and the enabled browser action was exercised.
 - P2: route metadata titles remain meaningful static English strings; all visible UI, states, controls, forms, and formatting are localized.
 - External: public API availability and future payload drift remain runtime risks; normalized recoverable errors and Zod boundary failures are implemented.
-- Handoff: Phase 5–10 changes are uncommitted and must be reviewed before the user explicitly requests a commit.
 - P2/tooling: the local browser extension blocked one final visual reload after the dev server restart; automated checks and the rebuilt HTTP 200 route pass.
 
 ## Decisions made
@@ -90,7 +94,7 @@ Post-release UI repair:
 
 ## Required next action
 
-No next implementation phase. Review the working-tree diff, then explicitly request a commit and/or deployment if desired.
+No next implementation phase. Repository is pushed and production is deployed; only optional follow-up is connecting a custom domain if desired.
 
 ---
 
