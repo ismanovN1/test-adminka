@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --background: oklch(0.985 0.003 264);
+  --foreground: oklch(0.215 0.025 264);
+  --surface: oklch(1 0 0);
+  --muted: oklch(0.955 0.008 264);
+  --muted-foreground: oklch(0.48 0.025 264);
+  --border: oklch(0.89 0.012 264);
+  --input: oklch(0.82 0.018 264);
+  --primary: oklch(0.53 0.2 275);
+  --primary-foreground: oklch(0.985 0.005 275);
+  --primary-subtle: oklch(0.93 0.035 275);
+  --primary-subtle-foreground: oklch(0.38 0.16 275);
+  --primary-glow: oklch(0.86 0.09 275 / 0.55);
+  --focus: oklch(0.58 0.21 275);
+  --success: oklch(0.55 0.15 155);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.17 0.018 264);
+  --foreground: oklch(0.94 0.008 264);
+  --surface: oklch(0.215 0.02 264);
+  --muted: oklch(0.27 0.02 264);
+  --muted-foreground: oklch(0.7 0.022 264);
+  --border: oklch(0.32 0.025 264);
+  --input: oklch(0.4 0.025 264);
+  --primary: oklch(0.7 0.16 275);
+  --primary-foreground: oklch(0.17 0.03 275);
+  --primary-subtle: oklch(0.29 0.07 275);
+  --primary-subtle-foreground: oklch(0.84 0.08 275);
+  --primary-glow: oklch(0.5 0.16 275 / 0.2);
+  --focus: oklch(0.74 0.15 275);
+  --success: oklch(0.7 0.14 155);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-primary-subtle-foreground: var(--primary-subtle-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-focus: var(--focus);
+  --color-success: var(--success);
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-width: 320px;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--primary-subtle);
+  color: var(--primary-subtle-foreground);
+}
