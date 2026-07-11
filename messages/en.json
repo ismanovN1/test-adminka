@@ -1,0 +1,54 @@
+{
+  "common": {
+    "appName": "Nexa Admin",
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar",
+    "changeLanguage": "Change language",
+    "changeTheme": "Change theme",
+    "profile": "Profile",
+    "adminRole": "Administrator",
+    "backToDashboard": "Back to dashboard",
+    "retry": "Try again",
+    "menu": "Primary navigation"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "products": "Products",
+    "orders": "Orders",
+    "analytics": "Analytics",
+    "settings": "Settings"
+  },
+  "pages": {
+    "dashboard": { "description": "Key metrics and system overview" },
+    "users": { "description": "Manage user data" },
+    "products": { "description": "Catalog, pricing, and inventory" },
+    "orders": { "description": "Orders and fulfillment status" },
+    "analytics": { "description": "Detailed sales and audience analysis" },
+    "settings": { "description": "Profile and application preferences" },
+    "placeholderTitle": "This section is ready for content",
+    "placeholderDescription": "Navigation and layout are ready. The workflow for this section will be added in its dedicated phase.",
+    "phaseLabel": "Phase 3 · Interface foundation"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "current": "Theme: {theme}"
+  },
+  "locale": {
+    "ru": "Русский",
+    "en": "English",
+    "current": "Language: {locale}"
+  },
+  "errors": {
+    "routeTitle": "Something went wrong",
+    "routeDescription": "We could not open this section. Try again or return to the dashboard.",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The address may have changed, or the page no longer exists."
+  },
+  "loading": { "label": "Loading section" }
+}

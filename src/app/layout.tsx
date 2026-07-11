@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { getAppLocale, getAppMessages } from "@/shared/i18n/server";
+import { AppShell } from "@/widgets/app-shell/app-shell";
+
 import { AppProviders } from "./providers/app-providers";
 
 import "./globals.css";
@@ -24,15 +27,20 @@ export const metadata: Metadata = {
   description: "Responsive commerce analytics administration interface.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const locale = await getAppLocale();
+  const messages = getAppMessages(locale);
+
   return (
     <html
       className={`${geistSans.variable} ${geistMono.variable}`}
-      lang="ru"
+      lang={locale}
       suppressHydrationWarning
     >
       <body>
-        <AppProviders>{children}</AppProviders>
+        <AppProviders locale={locale} messages={messages}>
+          <AppShell>{children}</AppShell>
+        </AppProviders>
       </body>
     </html>
   );

@@ -1,0 +1,54 @@
+{
+  "common": {
+    "appName": "Nexa Admin",
+    "skipToContent": "Перейти к содержимому",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "collapseSidebar": "Свернуть боковую панель",
+    "expandSidebar": "Развернуть боковую панель",
+    "changeLanguage": "Сменить язык",
+    "changeTheme": "Сменить тему",
+    "profile": "Профиль",
+    "adminRole": "Администратор",
+    "backToDashboard": "Вернуться на главную",
+    "retry": "Повторить",
+    "menu": "Основная навигация"
+  },
+  "nav": {
+    "dashboard": "Обзор",
+    "users": "Пользователи",
+    "products": "Товары",
+    "orders": "Заказы",
+    "analytics": "Аналитика",
+    "settings": "Настройки"
+  },
+  "pages": {
+    "dashboard": { "description": "Ключевые показатели и состояние системы" },
+    "users": { "description": "Управление данными пользователей" },
+    "products": { "description": "Каталог, цены и остатки" },
+    "orders": { "description": "Заказы и состояние их обработки" },
+    "analytics": { "description": "Подробный анализ продаж и аудитории" },
+    "settings": { "description": "Профиль и настройки приложения" },
+    "placeholderTitle": "Раздел готов к наполнению",
+    "placeholderDescription": "Навигация и макет готовы. Рабочие функции этого раздела будут добавлены на следующем профильном этапе.",
+    "phaseLabel": "Этап 3 · Основа интерфейса"
+  },
+  "theme": {
+    "light": "Светлая",
+    "dark": "Тёмная",
+    "system": "Системная",
+    "current": "Тема: {theme}"
+  },
+  "locale": {
+    "ru": "Русский",
+    "en": "English",
+    "current": "Язык: {locale}"
+  },
+  "errors": {
+    "routeTitle": "Что-то пошло не так",
+    "routeDescription": "Не удалось открыть этот раздел. Попробуйте ещё раз или вернитесь на главную.",
+    "notFoundTitle": "Страница не найдена",
+    "notFoundDescription": "Возможно, адрес изменился или страница больше не существует."
+  },
+  "loading": { "label": "Загрузка раздела" }
+}

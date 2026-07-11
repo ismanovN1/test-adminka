@@ -1,10 +1,10 @@
 # Project status and session handoff
 
-Last updated: 2026-07-11 15:48 +05  
-Lifecycle: **IMPLEMENTING**  
-Current owner: root managing agent  
-Active phase: none  
-Next phase: **Phase 3 — App shell, navigation, responsive layout, and i18n**
+Last updated: 2026-07-11 16:52 +05
+Lifecycle: **IMPLEMENTING**
+Current owner: root managing agent
+Active phase: none
+Next phase: **Phase 4 — Users workflow**
 
 ## Phase board
 
@@ -12,8 +12,8 @@ Next phase: **Phase 3 — App shell, navigation, responsive layout, and i18n**
 |---|---|---|
 | 1. Bootstrap and foundations | COMPLETE | Automated gate passed; 360/1440 light/dark browser matrix passed |
 | 2. API/domain/analytics truth | COMPLETE | Repaired review findings; Axios/Zod/domain/selectors gate passed with 62 tests |
-| 3. Shell/navigation/i18n | NEXT | Repaired Phase 2 gate complete |
-| 4. Users | PENDING | — |
+| 3. Shell/navigation/i18n | COMPLETE | Responsive shell, persisted locale/theme/sidebar, route boundaries, 72 tests, and browser matrix passed |
+| 4. Users | NEXT | Phase 3 gate complete |
 | 5. Products | PENDING | — |
 | 6. Orders | PENDING | — |
 | 7. Dashboard | PENDING | — |
@@ -42,43 +42,48 @@ Allowed states: `PENDING`, `NEXT`, `IN PROGRESS`, `BLOCKED`, `COMPLETE`.
 
 ## Most recent completed work
 
-Phase 2 — API, domain models, and deterministic analytics:
+Phase 3 — App shell, navigation, responsive layout, and i18n:
 
-- added the validated DummyJSON Axios client with the configured base URL, 10-second timeout, AbortSignal forwarding, and serializable network/timeout/HTTP/validation/cancellation normalization;
-- added strict-enough local Zod boundaries and DTO-to-domain mapping for complete Users, Products, and Carts datasets, including nullable customer joins and safe empty cart lines;
-- added normalized entity models plus the canonical user/order statuses, fixed 2025 UTC user/product/order demo dates, stock semantics, and discounted unit price helper;
-- added full-dataset `limit=0` query keys, server-safe query options/functions, smallest-boundary client hooks, and cache-aware Orders composition that reuses the Users query cache;
-- added pure Users, Products, and Orders pipelines with normalized search, AND filters, stable ID tie-breaking, inclusive order date bounds, and pagination last while retaining the filtered/sorted pre-pagination result;
-- added canonical commerce selectors for totals, revenue, average rating, low stock, sales quantity/revenue, sold categories with `Unknown`, country/category/status distributions, 12-month zero fill, cumulative users, Top N + Other, and recent-by-ID demo activity;
-- added reusable local fixtures and focused tests for valid/malformed DTOs, optional and numeric boundaries, deterministic formulas, missing joins, empty cases, combined pipelines, stable sorting, pagination, aggregates, request cancellation, query signals/keys, and cache reuse;
-- repaired the independent review findings: every HTTP 4xx is now non-retryable, critical names/titles/categories reject whitespace-only DTO values at the Zod boundary, and NaN/Infinity pagination inputs fall back to entity defaults while finite pagination behavior remains unchanged;
-- added explicit regressions for HTTP 408/429 alongside 404/503 behavior, whitespace-only user/product/cart-line data including normalized query-boundary failure, and Users/Products/Orders non-finite pagination defaults;
-- changed only `src/entities`, the Phase 2 portions of `src/shared/api`, `src/shared/config/demo.ts`, `src/shared/lib/list-pipeline.ts`, `src/test/fixtures`, and this handoff; no UI route, package, lockfile, original assignment, or durable decision was changed.
+- added complete semantic Russian and English message catalogs, cookie-owned locale resolution, and a route-preserving locale switch that updates the document language and survives reload;
+- added the responsive product shell: 256/72 px persisted desktop sidebar, 72 px tablet rail, mobile drawer, sticky top bar, contextual page header, skip link, and profile/settings entry;
+- added all six App Router destinations with localized active navigation and intentionally scope-limited placeholder content;
+- added a compact Light/Dark/System cycle control backed solely by `next-themes`; browser reloads retained both explicit dark mode and the active locale without hydration warnings;
+- implemented mobile drawer background scroll lock, initial focus, Tab/Shift+Tab wrapping, Escape close, navigation close, overlay close, and trigger focus restoration;
+- added localized route loading/error/404 UI plus a root global error fallback, one contextual `h1` per route, meaningful route metadata, reduced-motion handling, and 44 px interactive targets;
+- added focused locale and navigation route tests and made the shared Button ref-forwarding for reliable focus restoration;
+- changed only `messages`, shell/preferences/theme UI, App Router route composition/boundaries, shared i18n/UI support, CSS accessibility behavior, tests, and this handoff; no feature workflow, data formula, package, lockfile, or durable architecture decision changed.
 
 ## Verification from most recent session
 
-- Root reviewer independently reran the authoritative sequential repair gate `pnpm lint && pnpm typecheck && pnpm test:run && pnpm build` — PASS.
-- `pnpm typecheck` — PASS, strict TypeScript emitted no errors.
+- Authoritative sequential gate `pnpm lint && pnpm typecheck && pnpm test:run && pnpm build` — PASS.
 - `pnpm lint` — PASS, zero warnings/errors.
-- `pnpm test:run` — PASS, 11 test files and 62 tests; all API tests used local fixtures/mocks and made no live-network requests.
-- `pnpm build` — PASS on Next.js `15.5.20`; compilation, framework type/lint checks, page-data collection, and static generation of `/` and `/_not-found` completed.
-- Independent read-only review — initial audit found three P2/P3 contract gaps; all were repaired, and the targeted re-review passed 8 focused files / 48 tests with no remaining finding.
-- Browser QA — not run because Phase 2 made no visual or route changes; the Phase 1 base UI remains unchanged.
-- Scope audit — PASS; no `src/pages`, `any`, suppressions, TODO/FIXME/debug/console artifacts, random/current-time synthesis, Posts/REST Countries calls, secrets, package changes, or feature-page formulas found.
+- `pnpm typecheck` — PASS, strict TypeScript emitted no errors.
+- `pnpm test:run` — PASS, 13 test files and 72 tests.
+- `pnpm build` — PASS on Next.js `15.5.20`; all six routes plus `/_not-found` compiled, with 124 kB first-load JS reported for shell routes.
+- Browser 360×800 light/dark — PASS; mobile menu rendered, page width equaled viewport width, no horizontal overflow, and locale/theme/path/query state were preserved.
+- Browser 768×1024 dark — PASS; 72 px tablet rail rendered, mobile trigger was hidden, content remained contained, and screenshot inspection found no collision or overflow.
+- Browser 1440×900 dark — PASS; 256 px desktop sidebar rendered, collapse changed it to 72 px and persisted after hydration/reload, content remained stable and contained.
+- Browser navigation — PASS; mobile Link navigation reached `/users`, set the correct `aria-current`, updated the localized `h1`, and closed the drawer; all six routes and the unmatched 404 loaded with meaningful title/content.
+- Browser i18n/theme — PASS; Russian-to-English switching preserved `/users`, reload retained `lang=en`, dark mode retained its class after reload, and the final 404 correctly exposed one English `h1`.
+- Browser keyboard/a11y — PASS; drawer initial focus, Shift+Tab/Tab wrapping, Escape, scroll unlock, and trigger focus restoration were directly exercised.
+- Browser console — PASS; zero warning/error entries across the tested flows.
+- Scope/diff audit — PASS; no `src/pages`, `any`, suppressions, TODO/FIXME/debug/console artifacts, random/current-time synthesis, secrets, package changes, or feature workflows found.
 - Original assignment integrity — PASS; SHA-256 remains `fec912ae940deab9832ee5749b1cf414b232cbac0e03c441bb981870aba3aa0e`.
 
 ## Open issues/blockers
 
 - Git history begins after Phases 1–2 were already complete, so those two phases share one documented baseline commit rather than separate historical commits.
-- Public API availability and future payload drift remain runtime risks by design; the new timeout, normalized errors, Zod boundaries, and retry policy contain these failures, while later feature phases must surface their loading/error/retry states.
+- Route metadata titles are meaningful but static English strings; full locale-aware metadata can be considered in the release audit if required, while all visible shell and boundary copy is localized now.
+- Feature routes intentionally remain placeholder-only until their owning phases; query-driven loading/empty/error/retry behavior starts in Phase 4.
+- Public API availability and future payload drift remain runtime risks by design; later feature phases must surface the existing normalized failures.
 
 ## Decisions made
 
-- ADR-010 authorizes one quality-gated commit per completed phase; Phases 1–2 are captured together as the initial baseline.
+- None. Phase 3 follows ADR-007 and ADR-010 without a durable deviation.
 
 ## Required next action
 
-Use the **Phase 3 prompt — Shell/i18n** from `docs/ai/05_CODEX_PROMPTS.md`.
+Use the **Phase 4 prompt — Users** from `docs/ai/05_CODEX_PROMPTS.md`.
 
 ---
 
