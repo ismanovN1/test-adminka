@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Nexa Admin",
-    template: "%s · Nexa Admin",
+    default: "Test Admin",
+    template: "%s · Test Admin",
   },
   description: "Responsive commerce analytics administration interface.",
 };

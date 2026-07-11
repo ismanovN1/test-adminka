@@ -67,7 +67,7 @@ export function AppNavigation({ collapsed = false, onNavigate }: AppNavigationPr
         <span className="grid size-9 shrink-0 place-items-center rounded-full bg-primary-subtle text-sm font-semibold text-primary-subtle-foreground">NA</span>
         {!collapsed && (
           <span className="min-w-0">
-            <span className="block truncate text-sm font-medium">Nexa Admin</span>
+            <span className="block truncate text-sm font-medium">Test Admin</span>
             <span className="block truncate text-xs text-muted-foreground">{t("common.adminRole")}</span>
           </span>
         )}

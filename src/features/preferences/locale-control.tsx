@@ -27,13 +27,19 @@ export function LocaleControl() {
   return (
     <Button
       aria-label={t("locale.current", { locale: t(`locale.${locale}`) })}
-      className="size-11 shrink-0 px-0"
+      className="relative size-11 shrink-0 px-0"
       disabled={isPending}
       onClick={changeLocale}
       title={t("common.changeLanguage")}
       variant="ghost"
     >
       <Languages aria-hidden="true" className="size-5" />
+      <span
+        aria-hidden="true"
+        className="absolute right-0.5 top-0.5 rounded-full bg-primary px-1 py-px text-[9px] font-bold leading-3 text-primary-foreground"
+      >
+        {locale.toUpperCase()}
+      </span>
       <span className="sr-only">{t(`locale.${nextLocale}`)}</span>
     </Button>
   );

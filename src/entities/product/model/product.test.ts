@@ -36,9 +36,9 @@ describe("product boundary and deterministic fields", () => {
     });
   });
 
-  it("accepts numeric boundaries and optional brand", () => {
+  it.each([undefined, null])("accepts numeric boundaries and a missing brand (%s)", (brand) => {
     const dto = makeProductDto({
-      brand: undefined,
+      brand,
       discountPercentage: 100,
       rating: 5,
       stock: 0,

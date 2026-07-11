@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { PlaceholderPanel } from "@/shared/ui/placeholder-panel";
+import { ProductsWorkflow } from "@/features/products/ui/products-workflow";
 
 export const metadata: Metadata = { title: "Products" };
 
 export default function ProductsPage() {
-  return <PlaceholderPanel />;
+  return <ProductsWorkflow />;
 }

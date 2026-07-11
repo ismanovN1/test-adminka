@@ -90,6 +90,14 @@ This is an append-only log. New decisions receive the next number. Do not rewrit
 - Decision: Add `@vitejs/plugin-react` as a dev dependency and register it in `vitest.config.ts` so TSX component tests run without changing the production Next.js TypeScript JSX setting.
 - Consequence: One narrow test-only dependency is added; required interaction coverage can run in Vitest while the App Router build configuration remains unchanged.
 
+## ADR-012 — Rename the product to Test Admin
+
+- Date: 2026-07-11
+- Status: Accepted
+- Context: The user requested that the project name change from Nexa Admin to Test Admin after the initial release candidate.
+- Decision: Use “Test Admin” in visible branding, localized app-name messages, route metadata, README, product specification, and the package identifier (`test-admin`). Keep unrelated fixture brands and the existing persisted-preferences storage key unchanged to avoid unnecessary data churn.
+- Consequence: Browser-visible branding and package metadata now match; users retain existing local preferences.
+
 ## New decision template
 
 ```text

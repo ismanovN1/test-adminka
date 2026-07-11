@@ -1,7 +1,7 @@
 # Product specification — Analytics Dashboard
 
 Status: **FROZEN BASELINE**  
-Product name: **Nexa Admin** (working name; may be replaced once, in Phase 1, with a recorded decision)  
+Product name: **Test Admin**  
 Default locale: **Russian (`ru`)**  
 Secondary locale: **English (`en`)**
 

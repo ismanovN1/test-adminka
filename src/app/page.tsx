@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { PlaceholderPanel } from "@/shared/ui/placeholder-panel";
+import { DashboardWorkflow } from "@/widgets/dashboard/dashboard-workflow";
 
 export const metadata: Metadata = { title: "Dashboard" };
 
 export default function DashboardPage() {
-  return <PlaceholderPanel />;
+  return <DashboardWorkflow />;
 }

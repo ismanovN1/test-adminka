@@ -5,7 +5,7 @@ const productDtoSchema = z.object({
   title: z.string().trim().min(1),
   description: z.string().default(""),
   category: z.string().trim().min(1),
-  brand: z.string().min(1).optional(),
+  brand: z.string().min(1).nullish(),
   price: z.number().nonnegative(),
   discountPercentage: z.number().min(0).max(100),
   rating: z.number().min(0).max(5),

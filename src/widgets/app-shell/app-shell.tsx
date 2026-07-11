@@ -80,8 +80,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <Menu aria-hidden="true" className="size-5" />
           </Button>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm text-muted-foreground">{t("common.appName")}</p>
-            <p className="truncate text-sm font-semibold sm:text-base">{pageTitle}</p>
+            <h1 className="truncate text-sm font-semibold sm:text-base">{pageTitle}</h1>
+            <p className="truncate text-xs text-muted-foreground sm:text-sm">{pageDescription}</p>
           </div>
           <LocaleControl />
           <ThemeToggle />
@@ -89,13 +89,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
         <main className="min-w-0 flex-1 overflow-y-auto" id="main-content" tabIndex={-1}>
           <div className="mx-auto w-full max-w-[100rem] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-            <header className="mb-6">
-              <p className="mb-1 text-sm font-medium text-primary">{t("pages.phaseLabel")}</p>
-              <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{pageTitle}</h1>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">
-                {pageDescription}
-              </p>
-            </header>
             {children}
           </div>
         </main>

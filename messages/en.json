@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Nexa Admin",
+    "appName": "Test Admin",
     "skipToContent": "Skip to content",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
@@ -28,10 +28,7 @@
     "products": { "description": "Catalog, pricing, and inventory" },
     "orders": { "description": "Orders and fulfillment status" },
     "analytics": { "description": "Detailed sales and audience analysis" },
-    "settings": { "description": "Profile and application preferences" },
-    "placeholderTitle": "This section is ready for content",
-    "placeholderDescription": "Navigation and layout are ready. The workflow for this section will be added in its dedicated phase.",
-    "phaseLabel": "Phase 3 · Interface foundation"
+    "settings": { "description": "Profile and application preferences" }
   },
   "theme": {
     "light": "Light",
@@ -51,6 +48,305 @@
     "notFoundDescription": "The address may have changed, or the page no longer exists."
   },
   "loading": { "label": "Loading section" },
+  "settings": {
+    "appearance": {
+      "title": "Appearance",
+      "description": "Choose a light, dark, or system-matched interface.",
+      "group": "Color theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": {
+      "title": "Language",
+      "description": "Language and locale formatting apply across the current route.",
+      "group": "Application language",
+      "ru": "Русский",
+      "en": "English"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Local demo preferences are stored only in this browser.",
+      "email": "Email notifications",
+      "emailDescription": "Receive general product updates by email in this demo preference set.",
+      "products": "Product alerts",
+      "productsDescription": "Keep low-stock and catalog alerts enabled.",
+      "orders": "Order alerts",
+      "ordersDescription": "Keep order-status notifications enabled."
+    },
+    "profile": {
+      "title": "Profile information",
+      "description": "Validate a local-only administrator profile without a remote mutation.",
+      "avatar": "Profile initials: {initials}",
+      "avatarDescription": "Initials update from the form. No image is uploaded or sent.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "role": "Role",
+      "save": "Save profile locally",
+      "saved": "Profile saved",
+      "localOnly": "This demo action is local-only and does not update a server.",
+      "errors": {
+        "firstName": "Enter at least two characters for the first name.",
+        "lastName": "Enter at least two characters for the last name.",
+        "email": "Enter a valid email address.",
+        "role": "Enter at least two characters for the role."
+      }
+    },
+    "reset": {
+      "title": "Reset preferences",
+      "description": "Restore theme, language, notifications, sidebar, and table-column preferences to defaults.",
+      "action": "Reset preferences",
+      "confirmTitle": "Reset all local preferences?",
+      "confirmDescription": "This clears the saved interface preferences in this browser. Remote data is not changed.",
+      "cancel": "Cancel",
+      "confirm": "Reset",
+      "done": "Preferences reset"
+    }
+  },
+  "analytics": {
+    "summaryLabel": "Shared commerce totals",
+    "summary": {
+      "revenue": "Discounted revenue",
+      "orders": "Orders",
+      "users": "Users"
+    },
+    "charts": {
+      "other": "Other",
+      "empty": "No data available",
+      "trend": {
+        "title": "Revenue and order trend",
+        "description": "Discounted revenue and order count across the same deterministic 2025 demo months.",
+        "insight": "The two series share month buckets but use separate axes; the view describes volume and value without claiming causation.",
+        "summary": "Highest monthly revenue: {revenue}; highest monthly order count: {orders}.",
+        "revenue": "Revenue",
+        "orders": "Orders"
+      },
+      "users": {
+        "title": "Cumulative users",
+        "description": "Running total from deterministic user indexed months.",
+        "insight": "The line accumulates indexed demo records and is not a real registration timeline.",
+        "summary": "Cumulative users at year end: {value}.",
+        "series": "Cumulative users"
+      },
+      "categories": {
+        "title": "Popular categories",
+        "description": "Top catalog categories ranked by sold quantity in order lines, plus Other.",
+        "insight": "Category popularity uses item quantity, not catalog size or product rating.",
+        "series": "Sold quantity"
+      },
+      "countries": {
+        "title": "Audience by country",
+        "description": "Top normalized address countries plus Other.",
+        "insight": "Country counts reflect the current DummyJSON user sample and are not market-share estimates."
+      },
+      "products": {
+        "title": "Top-selling products",
+        "description": "Products ranked by quantity; discounted line revenue is available in the tooltip and summary.",
+        "insight": "Ranking uses summed cart-line quantity with product ID as a stable tie-breaker.",
+        "quantity": "Sold quantity"
+      }
+    },
+    "states": {
+      "refreshing": "Refreshing analytics in the background…",
+      "partialError": "Some analytics sources are unavailable. Available charts remain visible and missing data is not presented as factual.",
+      "errorTitle": "Could not load analytics",
+      "errorDescription": "The required public datasets are unavailable. Check the connection and retry.",
+      "retry": "Retry all"
+    }
+  },
+  "dashboard": {
+    "kpiLabel": "Commerce summary",
+    "kpis": {
+      "users": { "label": "Total users", "context": "Complete users dataset" },
+      "products": { "label": "Total products", "context": "Complete catalog dataset" },
+      "orders": { "label": "Total orders", "context": "Normalized DummyJSON carts" },
+      "revenue": { "label": "Total revenue", "context": "Sum of discounted order totals" },
+      "rating": { "label": "Average rating", "context": "Arithmetic mean across products" },
+      "lowStock": { "label": "Low-stock products", "context": "Stock at or below 10, including zero" }
+    },
+    "status": {
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "charts": {
+      "other": "Other",
+      "emptySummary": "No data available",
+      "revenueTitle": "Monthly revenue",
+      "revenueDescription": "Discounted revenue grouped by deterministic 2025 demo month.",
+      "revenueSummary": "Highest monthly revenue shown: {value}.",
+      "revenueSeries": "Revenue",
+      "statusTitle": "Orders by status",
+      "statusDescription": "Distribution of deterministic demo fulfillment statuses.",
+      "ordersSeries": "Orders",
+      "countryTitle": "Users by country",
+      "countryDescription": "Top countries from normalized user addresses, plus Other.",
+      "categoryTitle": "Products by category",
+      "categoryDescription": "Catalog count by category, limited to top groups plus Other.",
+      "productsTitle": "Top-selling products",
+      "productsDescription": "Products ranked by quantity across cart line items.",
+      "quantitySeries": "Sold quantity"
+    },
+    "activity": {
+      "label": "Recently indexed demo data",
+      "users": "Indexed users",
+      "products": "Indexed products",
+      "orders": "Indexed orders",
+      "unknown": "Unknown customer",
+      "viewAll": "View all",
+      "demoNote": "These lists use descending source ID because the APIs do not provide creation timestamps."
+    },
+    "states": {
+      "refreshing": "Refreshing dashboard data in the background…",
+      "partialError": "Some source data is unavailable. Available panels remain usable and missing values are not presented as factual.",
+      "errorTitle": "Could not load the dashboard",
+      "errorDescription": "The required public datasets are unavailable. Check the connection and retry.",
+      "retry": "Retry all"
+    }
+  },
+  "orders": {
+    "label": "Orders list",
+    "results": "Orders found: {count}",
+    "unknownCustomer": "Unknown customer",
+    "missingJoin": "Customer record unavailable",
+    "noLines": "No product lines",
+    "moreLines": "+{count} more products",
+    "status": {
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "toolbar": {
+      "search": "Search",
+      "searchPlaceholder": "Order ID, customer, email, or product",
+      "status": "Status",
+      "from": "From demo date",
+      "to": "To demo date",
+      "sort": "Sort",
+      "all": "All",
+      "dateError": "The start date cannot be after the end date.",
+      "clear": "Clear filters"
+    },
+    "sort": {
+      "id_desc": "Newest indexed ID",
+      "id_asc": "Oldest indexed ID",
+      "customer_asc": "Customer A–Z",
+      "quantity_desc": "Highest quantity",
+      "total_desc": "Highest total",
+      "total_asc": "Lowest total",
+      "status_asc": "Status A–Z",
+      "date_desc": "Latest demo date",
+      "date_asc": "Earliest demo date"
+    },
+    "table": {
+      "scroll": "Orders table with horizontal scrolling",
+      "order": "Order",
+      "customer": "Customer",
+      "products": "Products",
+      "quantity": "Quantity",
+      "total": "Discounted total",
+      "status": "Status",
+      "date": "Demo date",
+      "actions": "Actions",
+      "detailsFor": "Open details for {id}"
+    },
+    "pagination": {
+      "range": "{from}–{to} of {total}",
+      "pageSize": "Rows",
+      "page": "Page {page} of {totalPages}",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "states": {
+      "refreshing": "Refreshing orders in the background…",
+      "remoteEmptyTitle": "No orders yet",
+      "remoteEmptyDescription": "The API returned an empty carts dataset.",
+      "filteredEmptyTitle": "No matching orders",
+      "filteredEmptyDescription": "Adjust the search criteria or clear filters.",
+      "invalidRangeDescription": "Choose a valid demo date range to see orders.",
+      "clearFilters": "Clear filters",
+      "errorTitle": "Could not load orders",
+      "errorDescription": "Check your connection and retry. Customer joins are loaded once with the order dataset.",
+      "retry": "Retry"
+    },
+    "details": {
+      "close": "Close order details",
+      "unknownCustomer": "Unknown customer",
+      "noLines": "This order has no product lines.",
+      "lineMeta": "{quantity} × {price} · {discount}% discount",
+      "quantity": "Total quantity",
+      "gross": "Gross total",
+      "discounted": "Discounted total",
+      "demoNote": "Status and date are deterministic demo fields because DummyJSON carts do not provide them. Revenue uses the discounted total."
+    }
+  },
+  "products": {
+    "label": "Product catalog",
+    "results": "Products found: {count}",
+    "toolbar": {
+      "search": "Search",
+      "searchPlaceholder": "Title, description, brand, or category",
+      "category": "Category",
+      "rating": "Rating",
+      "ratingAtLeast": "{rating}+ stars",
+      "sort": "Sort",
+      "price": "Price range",
+      "minPrice": "Minimum price",
+      "maxPrice": "Maximum price",
+      "priceError": "Minimum price cannot exceed maximum price.",
+      "apply": "Apply price",
+      "clear": "Clear filters",
+      "all": "All"
+    },
+    "sort": {
+      "id_asc": "Default",
+      "title_asc": "Title A–Z",
+      "title_desc": "Title Z–A",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low",
+      "rating_desc": "Highest rating",
+      "discount_desc": "Largest discount",
+      "stock_asc": "Lowest stock"
+    },
+    "stock": {
+      "out": "Out of stock",
+      "low": "Low stock · {count}",
+      "in": "In stock · {count}"
+    },
+    "card": { "detailsFor": "Open details for {title}" },
+    "pagination": {
+      "range": "{from}–{to} of {total}",
+      "pageSize": "Items",
+      "page": "Page {page} of {totalPages}",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "states": {
+      "refreshing": "Refreshing products in the background…",
+      "remoteEmptyTitle": "No products yet",
+      "remoteEmptyDescription": "The API returned an empty product catalog.",
+      "filteredEmptyTitle": "No matching products",
+      "filteredEmptyDescription": "Adjust the search or clear filters to see the catalog again.",
+      "clearFilters": "Clear filters",
+      "errorTitle": "Could not load products",
+      "errorDescription": "Check your connection and retry the request.",
+      "retry": "Retry"
+    },
+    "details": {
+      "close": "Close product details",
+      "price": "Price",
+      "discount": "Discount",
+      "rating": "Rating",
+      "stock": "Stock",
+      "brand": "Brand",
+      "unknown": "Not specified",
+      "indexed": "Demo indexed date",
+      "note": "The indexed date is a deterministic demo field because the source API does not provide creation dates."
+    }
+  },
   "users": {
     "results": "Users found: {count}",
     "status": {

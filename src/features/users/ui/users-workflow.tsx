@@ -95,6 +95,34 @@ function getUniqueOptions(users: readonly User[], field: "country" | "department
   );
 }
 
+function UserAvatar({ size, user }: { size: 36 | 72; user: User }) {
+  const [failed, setFailed] = useState(false);
+  const initials = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase();
+
+  if (failed || !user.image) {
+    return (
+      <span
+        aria-hidden="true"
+        className="grid shrink-0 place-items-center rounded-2xl bg-primary-subtle font-semibold text-primary-subtle-foreground"
+        style={{ height: size, width: size }}
+      >
+        {initials}
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      alt=""
+      className="shrink-0 rounded-2xl bg-muted object-cover"
+      height={size}
+      onError={() => setFailed(true)}
+      src={user.image}
+      width={size}
+    />
+  );
+}
+
 function UsersSkeleton() {
   return (
     <Card className="space-y-4">
@@ -301,13 +329,7 @@ export function UsersWorkflow() {
         id: "avatar",
         header: t("users.table.avatar"),
         cell: ({ row }) => (
-          <Image
-            alt=""
-            className="rounded-full bg-muted"
-            height={36}
-            src={row.original.image}
-            width={36}
-          />
+          <UserAvatar size={36} user={row.original} />
         ),
       },
       {
@@ -678,7 +700,7 @@ export function UsersWorkflow() {
         </Card>
       )}
 
-      <div className="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-4 text-sm sm:flex-row sm:items-center sm:justify-between">
         <p className="text-muted-foreground">
           {t("users.pagination.range", {
             from: result.total === 0 ? 0 : (result.page - 1) * result.pageSize + 1,
@@ -686,8 +708,8 @@ export function UsersWorkflow() {
             total: result.total,
           })}
         </p>
-        <div className="flex flex-wrap items-center gap-2">
-          <label className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-3">
+          <label className="flex items-center gap-2 whitespace-nowrap">
             <span className="text-muted-foreground">{t("users.pagination.pageSize")}</span>
             <select
               className="min-h-11 rounded-xl border border-input bg-background px-3 outline-none focus-visible:ring-2 focus-visible:ring-focus"
@@ -714,7 +736,7 @@ export function UsersWorkflow() {
           >
             <ChevronLeft aria-hidden="true" className="size-4" />
           </Button>
-          <span className="tabular-nums text-muted-foreground">
+          <span className="min-w-24 text-center tabular-nums text-muted-foreground">
             {t("users.pagination.page", {
               page: result.page,
               totalPages: result.totalPages,
@@ -929,13 +951,7 @@ function UserDetailsDialog({
           <X aria-hidden="true" className="size-5" />
         </Button>
         <div className="flex items-start gap-4 pr-12">
-          <Image
-            alt=""
-            className="rounded-2xl bg-muted"
-            height={72}
-            src={user.image}
-            width={72}
-          />
+          <UserAvatar size={72} user={user} />
           <div>
             <Badge className={statusBadgeClass(user.status)}>
               {t(`users.status.${user.status}`)}

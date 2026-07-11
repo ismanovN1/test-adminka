@@ -2,6 +2,7 @@
 
 import { NextIntlClientProvider } from "next-intl";
 import type { ReactNode } from "react";
+import { Toaster } from "sonner";
 
 import type { AppLocale } from "@/shared/i18n/config";
 
@@ -18,7 +19,10 @@ export function AppProviders({ children, locale, messages }: AppProvidersProps) 
   return (
     <ThemeProvider>
       <NextIntlClientProvider locale={locale} messages={messages} timeZone="UTC">
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          {children}
+          <Toaster closeButton position="top-right" richColors />
+        </QueryProvider>
       </NextIntlClientProvider>
     </ThemeProvider>
   );

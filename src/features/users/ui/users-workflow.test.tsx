@@ -106,4 +106,12 @@ describe("UsersWorkflow", () => {
 
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
+
+  it("replaces a failed avatar with stable initials", () => {
+    const view = render(createElement(UsersWorkflow));
+    const avatar = view.container.querySelector("img");
+    expect(avatar).not.toBeNull();
+    fireEvent.error(avatar as HTMLImageElement);
+    expect(screen.getByText("GH")).toBeInTheDocument();
+  });
 });

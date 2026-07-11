@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { PlaceholderPanel } from "@/shared/ui/placeholder-panel";
+import { SettingsWorkflow } from "@/features/settings/ui/settings-workflow";
 
 export const metadata: Metadata = { title: "Settings" };
 
 export default function SettingsPage() {
-  return <PlaceholderPanel />;
+  return <SettingsWorkflow />;
 }
