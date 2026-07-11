@@ -50,5 +50,77 @@
     "notFoundTitle": "Страница не найдена",
     "notFoundDescription": "Возможно, адрес изменился или страница больше не существует."
   },
-  "loading": { "label": "Загрузка раздела" }
+  "loading": { "label": "Загрузка раздела" },
+  "users": {
+    "results": "Найдено пользователей: {count}",
+    "status": {
+      "active": "Активен",
+      "away": "Отошёл",
+      "inactive": "Неактивен"
+    },
+    "toolbar": {
+      "search": "Поиск",
+      "searchPlaceholder": "Имя, email, телефон, компания или страна",
+      "status": "Статус",
+      "country": "Страна",
+      "department": "Отдел",
+      "all": "Все",
+      "filters": "Фильтры",
+      "columns": "Колонки",
+      "export": "Экспорт CSV",
+      "active": "Фильтры",
+      "clearAll": "Сбросить всё",
+      "queryChip": "Поиск: {value}",
+      "statusChip": "Статус: {value}",
+      "countryChip": "Страна: {value}",
+      "departmentChip": "Отдел: {value}"
+    },
+    "selection": {
+      "selected": "Выбрано строк: {count}",
+      "clear": "Снять выбор"
+    },
+    "table": {
+      "scrollRegion": "Таблица пользователей с горизонтальной прокруткой",
+      "select": "Выбор",
+      "selectPage": "Выбрать строки на текущей странице",
+      "selectRow": "Выбрать пользователя {name}",
+      "avatar": "Аватар",
+      "name": "ФИО",
+      "email": "Email",
+      "phone": "Телефон",
+      "company": "Компания",
+      "country": "Страна",
+      "status": "Статус",
+      "actions": "Действия",
+      "openDetails": "Открыть карточку пользователя {name}"
+    },
+    "pagination": {
+      "range": "{from}–{to} из {total}",
+      "pageSize": "На странице",
+      "page": "Стр. {page} из {totalPages}",
+      "previous": "Предыдущая страница",
+      "next": "Следующая страница"
+    },
+    "states": {
+      "refreshing": "Обновляем данные в фоне…",
+      "remoteEmptyTitle": "Пользователей пока нет",
+      "remoteEmptyDescription": "API вернул пустой набор данных. Фильтры сохранены, но показывать сейчас нечего.",
+      "filteredEmptyTitle": "Ничего не найдено",
+      "filteredEmptyDescription": "Измените условия поиска или сбросьте фильтры, чтобы снова увидеть пользователей.",
+      "clearFilters": "Сбросить фильтры",
+      "errorTitle": "Не удалось загрузить пользователей",
+      "errorDescription": "Проверьте подключение или повторите запрос. Ошибка не раскрывает технические детали ответа API.",
+      "retry": "Повторить"
+    },
+    "details": {
+      "close": "Закрыть карточку пользователя",
+      "email": "Email",
+      "phone": "Телефон",
+      "company": "Компания",
+      "department": "Отдел",
+      "country": "Страна",
+      "indexedAt": "Демо-дата индексации",
+      "demoNote": "Статус и дата индексации рассчитаны детерминированно для демо-данных, потому что исходный API не предоставляет эти поля."
+    }
+  }
 }

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { PlaceholderPanel } from "@/shared/ui/placeholder-panel";
+import { UsersWorkflow } from "@/features/users/ui/users-workflow";
 
 export const metadata: Metadata = { title: "Users" };
 
 export default function UsersPage() {
-  return <PlaceholderPanel />;
+  return <UsersWorkflow />;
 }

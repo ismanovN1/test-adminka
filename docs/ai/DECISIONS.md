@@ -82,6 +82,14 @@ This is an append-only log. New decisions receive the next number. Do not rewrit
 - Decision: Initialize Git with one documented Phase 1–2 baseline, then create one focused commit after each later phase passes its full gate and its `STATUS.md` handoff is accurate. Failed or incomplete phases are not committed as complete.
 - Consequence: Reviewers get a readable phase-level history. Phases 1 and 2 cannot be reconstructed as separate historical commits and are transparently grouped in the baseline.
 
+## ADR-011 — Add Vite React plugin for component interaction tests
+
+- Date: 2026-07-11
+- Status: Accepted
+- Context: Phase 4 adds TSX component interaction tests for the Users workflow, but the existing Vitest/Vite transform kept `jsx: preserve` from the Next.js TypeScript config and failed to import TSX components.
+- Decision: Add `@vitejs/plugin-react` as a dev dependency and register it in `vitest.config.ts` so TSX component tests run without changing the production Next.js TypeScript JSX setting.
+- Consequence: One narrow test-only dependency is added; required interaction coverage can run in Vitest while the App Router build configuration remains unchanged.
+
 ## New decision template
 
 ```text

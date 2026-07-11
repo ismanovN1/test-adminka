@@ -1,10 +1,10 @@
 # Project status and session handoff
 
-Last updated: 2026-07-11 16:52 +05
+Last updated: 2026-07-11 17:34 +05
 Lifecycle: **IMPLEMENTING**
 Current owner: root managing agent
 Active phase: none
-Next phase: **Phase 4 — Users workflow**
+Next phase: **Phase 5 — Products workflow**
 
 ## Phase board
 
@@ -13,8 +13,8 @@ Next phase: **Phase 4 — Users workflow**
 | 1. Bootstrap and foundations | COMPLETE | Automated gate passed; 360/1440 light/dark browser matrix passed |
 | 2. API/domain/analytics truth | COMPLETE | Repaired review findings; Axios/Zod/domain/selectors gate passed with 62 tests |
 | 3. Shell/navigation/i18n | COMPLETE | Responsive shell, persisted locale/theme/sidebar, route boundaries, 72 tests, and browser matrix passed |
-| 4. Users | NEXT | Phase 3 gate complete |
-| 5. Products | PENDING | — |
+| 4. Users | COMPLETE | Users table workflow, URL state, CSV contract, 79 tests, build, and browser QA passed |
+| 5. Products | NEXT | Phase 4 gate complete |
 | 6. Orders | PENDING | — |
 | 7. Dashboard | PENDING | — |
 | 8. Analytics | PENDING | — |
@@ -42,48 +42,52 @@ Allowed states: `PENDING`, `NEXT`, `IN PROGRESS`, `BLOCKED`, `COMPLETE`.
 
 ## Most recent completed work
 
-Phase 3 — App shell, navigation, responsive layout, and i18n:
+Phase 4 — Users workflow:
 
-- added complete semantic Russian and English message catalogs, cookie-owned locale resolution, and a route-preserving locale switch that updates the document language and survives reload;
-- added the responsive product shell: 256/72 px persisted desktop sidebar, 72 px tablet rail, mobile drawer, sticky top bar, contextual page header, skip link, and profile/settings entry;
-- added all six App Router destinations with localized active navigation and intentionally scope-limited placeholder content;
-- added a compact Light/Dark/System cycle control backed solely by `next-themes`; browser reloads retained both explicit dark mode and the active locale without hydration warnings;
-- implemented mobile drawer background scroll lock, initial focus, Tab/Shift+Tab wrapping, Escape close, navigation close, overlay close, and trigger focus restoration;
-- added localized route loading/error/404 UI plus a root global error fallback, one contextual `h1` per route, meaningful route metadata, reduced-motion handling, and 44 px interactive targets;
-- added focused locale and navigation route tests and made the shared Button ref-forwarding for reliable focus restoration;
-- changed only `messages`, shell/preferences/theme UI, App Router route composition/boundaries, shared i18n/UI support, CSS accessibility behavior, tests, and this handoff; no feature workflow, data formula, package, lockfile, or durable architecture decision changed.
+- replaced the `/users` placeholder with a full client workflow backed by the existing TanStack Query full-users dataset and canonical `runUserListPipeline`;
+- added URL-backed Users query state for `q`, `page`, `pageSize`, `sort`, `order`, `status`, `country`, and `department`, including sanitation of invalid values and page reset on search/filter/sort/page-size changes;
+- implemented a responsive TanStack Table with selection, select-current-page, clear-selection bulk bar, sortable headers with `aria-sort`, persisted column visibility, non-hideable name column, pagination, and a contained horizontal scroller with sticky identity column;
+- added mobile advanced filter disclosure, active filter chips, clear-all behavior, background refresh indicator, first-load skeleton, remote empty, filtered empty, and query error/retry states;
+- added accessible read-only user details dialog with deterministic demo-field note, initial focus, Tab loop, Escape close, backdrop close, and focus restoration;
+- added CSV export helpers matching the canonical contract: UTF-8 BOM, stable English headers, quote/CR/LF escaping, spreadsheet formula-injection defense, local-date filename, and export from the filtered/sorted result before pagination;
+- added Russian and English Users copy and status labels;
+- added focused tests for Users URL query sanitation, CSV contract/filename, and critical search/dialog interactions;
+- added `@vitejs/plugin-react` as a dev-only dependency to run TSX interaction tests without changing the Next.js TypeScript JSX setting; recorded as ADR-011;
+- changed only Users workflow/support, localized Users messages, the existing preferences store for Users column visibility, Vitest test support, ADR/status docs, and lockfile/package metadata. Products, Orders, Dashboard, Analytics, Settings, and canonical formulas were not implemented or changed.
 
 ## Verification from most recent session
 
 - Authoritative sequential gate `pnpm lint && pnpm typecheck && pnpm test:run && pnpm build` — PASS.
 - `pnpm lint` — PASS, zero warnings/errors.
 - `pnpm typecheck` — PASS, strict TypeScript emitted no errors.
-- `pnpm test:run` — PASS, 13 test files and 72 tests.
-- `pnpm build` — PASS on Next.js `15.5.20`; all six routes plus `/_not-found` compiled, with 124 kB first-load JS reported for shell routes.
-- Browser 360×800 light/dark — PASS; mobile menu rendered, page width equaled viewport width, no horizontal overflow, and locale/theme/path/query state were preserved.
-- Browser 768×1024 dark — PASS; 72 px tablet rail rendered, mobile trigger was hidden, content remained contained, and screenshot inspection found no collision or overflow.
-- Browser 1440×900 dark — PASS; 256 px desktop sidebar rendered, collapse changed it to 72 px and persisted after hydration/reload, content remained stable and contained.
-- Browser navigation — PASS; mobile Link navigation reached `/users`, set the correct `aria-current`, updated the localized `h1`, and closed the drawer; all six routes and the unmatched 404 loaded with meaningful title/content.
-- Browser i18n/theme — PASS; Russian-to-English switching preserved `/users`, reload retained `lang=en`, dark mode retained its class after reload, and the final 404 correctly exposed one English `h1`.
-- Browser keyboard/a11y — PASS; drawer initial focus, Shift+Tab/Tab wrapping, Escape, scroll unlock, and trigger focus restoration were directly exercised.
-- Browser console — PASS; zero warning/error entries across the tested flows.
-- Scope/diff audit — PASS; no `src/pages`, `any`, suppressions, TODO/FIXME/debug/console artifacts, random/current-time synthesis, secrets, package changes, or feature workflows found.
+- `pnpm test:run` — PASS, 16 test files and 79 tests.
+- `pnpm build` — PASS on Next.js `15.5.20`; `/users` compiled at 44.9 kB route size and 200 kB first-load JS, with all seven app routes plus `/_not-found` generated.
+- Browser 360×800 — PASS; `/users` loaded 208 live users, no document/body overflow, 10 paginated rows, search visible, mobile “Фильтры” trigger visible, filter disclosure opened native selects, and table overflow was contained in the labeled scroller.
+- Browser 768×1024 — PASS; `/users` loaded 208 users, no document/body overflow, 10 paginated rows, and table overflow remained contained.
+- Browser 1440×900 — PASS; `/users` loaded 208 users, no document/body overflow, 10 paginated rows, desktop table fit without contained overflow, export button was visible/enabled, and dark-mode rendering was intact.
+- Browser URL/filter/sort — PASS; typing `Emily` debounced to `?q=Emily`, showed the active search chip, and filtered to two rows; selecting status `away` produced `?q=Emily&status=away` and one matching row; clicking the name header produced `?sort=name`, changed row order, and set `aria-sort="ascending"`.
+- Browser empty state — PASS; `/users?q=definitely-no-user` showed “Ничего не найдено,” announced 0 results, and exposed “Сбросить фильтры.”
+- Browser selection/columns/details — PASS; select-current-page checked 10 visible rows and showed the selected bulk bar; hiding “Телефон” removed that column while keeping “ФИО”; opening a user details dialog focused Close, Tab stayed inside the dialog, Escape closed it, and focus returned to the triggering row action.
+- Browser theme/console — PASS; toggling from dark mode changed the page out of dark class with Users content intact and no overflow; browser console warnings/errors were empty for exercised Users flows.
+- Browser CSV — PARTIAL PRACTICAL EVIDENCE; export button was visible and enabled, and implementation/tests verify the blob/BOM/filename/filtered-sorted contract. Chrome automation did not emit a `download` event for the blob URL, so no downloaded file was captured in browser QA.
+- Scope/diff audit — PASS; no `src/pages`, source `any`, disabled lint rules, TODO/FIXME/debug/console artifacts, local storage inspection code, random/current-time synthesis beyond the approved local-date CSV filename, secrets, or later feature workflows found.
 - Original assignment integrity — PASS; SHA-256 remains `fec912ae940deab9832ee5749b1cf414b232cbac0e03c441bb981870aba3aa0e`.
 
 ## Open issues/blockers
 
 - Git history begins after Phases 1–2 were already complete, so those two phases share one documented baseline commit rather than separate historical commits.
 - Route metadata titles are meaningful but static English strings; full locale-aware metadata can be considered in the release audit if required, while all visible shell and boundary copy is localized now.
-- Feature routes intentionally remain placeholder-only until their owning phases; query-driven loading/empty/error/retry behavior starts in Phase 4.
+- Products, Orders, Dashboard, Analytics, and Settings intentionally remain placeholder-only until their owning phases.
 - Public API availability and future payload drift remain runtime risks by design; later feature phases must surface the existing normalized failures.
+- CSV browser download event was not observable through Chrome automation for the blob URL; the CSV contract is covered by unit tests and the export button path is implemented, but no downloaded file artifact was captured during browser QA.
 
 ## Decisions made
 
-- None. Phase 3 follows ADR-007 and ADR-010 without a durable deviation.
+- ADR-011 — Add Vite React plugin for component interaction tests.
 
 ## Required next action
 
-Use the **Phase 4 prompt — Users** from `docs/ai/05_CODEX_PROMPTS.md`.
+Use the **Phase 5 prompt — Products** from `docs/ai/05_CODEX_PROMPTS.md`.
 
 ---
 

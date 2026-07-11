@@ -50,5 +50,77 @@
     "notFoundTitle": "Page not found",
     "notFoundDescription": "The address may have changed, or the page no longer exists."
   },
-  "loading": { "label": "Loading section" }
+  "loading": { "label": "Loading section" },
+  "users": {
+    "results": "Users found: {count}",
+    "status": {
+      "active": "Active",
+      "away": "Away",
+      "inactive": "Inactive"
+    },
+    "toolbar": {
+      "search": "Search",
+      "searchPlaceholder": "Name, email, phone, company, or country",
+      "status": "Status",
+      "country": "Country",
+      "department": "Department",
+      "all": "All",
+      "filters": "Filters",
+      "columns": "Columns",
+      "export": "Export CSV",
+      "active": "Filters",
+      "clearAll": "Clear all",
+      "queryChip": "Search: {value}",
+      "statusChip": "Status: {value}",
+      "countryChip": "Country: {value}",
+      "departmentChip": "Department: {value}"
+    },
+    "selection": {
+      "selected": "Selected rows: {count}",
+      "clear": "Clear selection"
+    },
+    "table": {
+      "scrollRegion": "Users table with horizontal scrolling",
+      "select": "Selection",
+      "selectPage": "Select rows on the current page",
+      "selectRow": "Select user {name}",
+      "avatar": "Avatar",
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "country": "Country",
+      "status": "Status",
+      "actions": "Actions",
+      "openDetails": "Open details for {name}"
+    },
+    "pagination": {
+      "range": "{from}–{to} of {total}",
+      "pageSize": "Rows",
+      "page": "Page {page} of {totalPages}",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "states": {
+      "refreshing": "Refreshing data in the background…",
+      "remoteEmptyTitle": "No users yet",
+      "remoteEmptyDescription": "The API returned an empty dataset. Filters stay available, but there is nothing to show right now.",
+      "filteredEmptyTitle": "No matching users",
+      "filteredEmptyDescription": "Adjust the search criteria or clear filters to see users again.",
+      "clearFilters": "Clear filters",
+      "errorTitle": "Could not load users",
+      "errorDescription": "Check the connection or retry the request. Technical API details are kept out of the UI.",
+      "retry": "Retry"
+    },
+    "details": {
+      "close": "Close user details",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "department": "Department",
+      "country": "Country",
+      "indexedAt": "Demo indexed date",
+      "demoNote": "Status and indexed date are deterministic demo fields because the source API does not provide them."
+    }
+  }
 }
